@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 1,
       title: "Organic Cotton T-shirt",
+      category: "T-shirt",
       description: "Eco-friendly t-shirt made from 100% organic cotton.",
       co2: "2.5kg CO2",
       water: "1.5L water",
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 2,
       title: "Recycled Polyester Hoodie",
+      category: "Hoodie",
       description: "Hoodie made from 80% recycled polyester.",
       co2: "3.2kg CO2",
       water: "2.5L water",
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 3,
       title: "Bamboo Socks",
+      category: "Socks",
       description: "Soft and sustainable bamboo fiber socks.",
       co2: "1.1kg CO2",
       water: "0.8L water",
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 4,
       title: "Eco-Friendly Sneakers",
+      category: "Sneakers",
       description: "Sneakers made with recycled ocean plastic.",
       co2: "4.5kg CO2",
       water: "3.0L water",
@@ -39,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 5,
       title: "Vegan Leather Wallet",
+      category: "Wallet",
       description: "Wallet crafted from plant-based materials.",
       co2: "1.8kg CO2",
       water: "0.5L water",
@@ -47,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 6,
       title: "Solar-Powered Backpack",
+      category: "Backpack",
       description: "Backpack with integrated solar panel for charging.",
       co2: "5.3kg CO2",
       water: "4.0L water",
@@ -55,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 7,
       title: "Recycled Denim Jacket",
+      category: "Jacket",
       description: "Stylish jacket made from recycled denim.",
       co2: "3.9kg CO2",
       water: "2.0L water",
@@ -63,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 8,
       title: "Organic Cotton Scarf",
+      category: "Scarf",
       description: "Soft scarf made from 100% organic cotton.",
       co2: "2.2kg CO2",
       water: "1.0L water",
@@ -71,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 9,
       title: "Hemp Tote Bag",
+      category: "Tote Bag",
       description: "Durable and eco-friendly hemp tote bag.",
       co2: "1.5kg CO2",
       water: "0.6L water",
@@ -79,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: 10,
       title: "Sustainable Sunglasses",
+      category: "Sunglasses",
       description: "Sunglasses made from biodegradable materials.",
       co2: "1.2kg CO2",
       water: "0.4L water",
@@ -126,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const buyButton = document.createElement("button");
       buyButton.classList.add("buy-button");
-      buyButton.textContent = "Buy Now";
+      buyButton.textContent = `Buy ${product.category}`;
 
       card.appendChild(requestButton);
       card.appendChild(img);
