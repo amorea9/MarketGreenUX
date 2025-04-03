@@ -51,6 +51,11 @@ nav p {
   font-size: calc(var(--base-text-size) * 3);
 }
 
+#hero p {
+  font-size: calc(var(--base-text-size) * 1.5);
+  margin: 1rem 0;
+}
+
 /* Grid for Products */
 #grid {
   display: grid;
