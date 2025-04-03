@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Image found in cache");
 
       imgElement.src = cachedImage;
+      imgElement.previousElementSibling.style.display = "none"; // Hide the request button if image is cached already
     } else {
       console.log("Fetchin image...");
       const imageUrl = `https://static.vecteezy.com/system/resources/previews/028/244/679/large_2x/white-t-shirt-mockup-male-t-shirt-with-short-sleeves-front-back-view-realistic-3d-mock-up-ai-generated-photo.jpg`;
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Store the fetched image in localStorage after it loads
       imgElement.onload = () => {
         localStorage.setItem(storageKey, imgElement.src);
+        imgElement.previousElementSibling.style.display = "none"; // Hide the request button after image is loaded
       };
     }
   }
