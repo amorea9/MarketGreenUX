@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const requestButton = document.createElement("button");
       requestButton.classList.add("request-button");
-      requestButton.textContent = "Request Image";
+      requestButton.textContent = "Show Image";
       requestButton.addEventListener("click", () => fetchRandomImage(img, product.id));
 
       const img = document.createElement("img");
