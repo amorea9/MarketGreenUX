@@ -158,6 +158,93 @@ button:focus,
   outline-offset: 2px;
 }
 
+/* Modal Popup */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal[aria-hidden="false"] {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--light-beige);
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  color: var(--deep-green);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+
+.modal-content label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-weight: bold;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--gray-green);
+  font-size: 1rem;
+}
+
+.modal-button {
+  background-color: var(--warm-orange);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: var(--base-text-size);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--deep-green);
+}
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+#error-payment {
+  padding-bottom: 1rem;
+}
+
+input.error,
+select.error {
+  border: 2px solid red;
+  outline: none;
+}
+
 /* Responsive for Tablet */
 @media (min-width: 600px) {
   #grid {
