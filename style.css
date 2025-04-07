@@ -122,6 +122,18 @@ nav p {
   transition: background 0.3s ease;
 }
 
+.cookies-button {
+  background-color: var(--warm-orange);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: var(--base-text-size);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
 .buy-button:hover {
   background-color: var(--gray-green);
   color: var(--white);
@@ -369,11 +381,10 @@ hr {
   box-sizing: border-box; /* Prevent padding from affecting the height */
 }
 
-#cancel-btn {
+.cancel-btn {
   color: var(--deep-green);
   background: none;
   border: none;
-
   font-size: 1rem;
   font-weight: normal;
   text-decoration: underline;
@@ -392,4 +403,18 @@ hr {
   cursor: pointer;
   padding: 0;
   margin: 10px 0;
+}
+
+.welcome-modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
 }

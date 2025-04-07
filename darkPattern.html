@@ -39,6 +39,50 @@
     </section>
   </main>
 
+  <!-- Popup Modal -->
+  <div id="welcome-modal" class="modal" aria-hidden="false" role="dialog" aria-labelledby="welcome-title">
+    <div class="modal-content">
+      <h2 id="welcome-title">Cookies!</h2>
+       <p>We use cookies to improve your experience. Please select your preferences below:</p>
+       <br>
+       <div style="display: flex; gap: 40px; ;">
+         <button id="allCookies-btn"  class="cookies-button">Accept All Cookies</button>
+          <button id="necessary-btn" style="font-size: x-small;" class="cancel-btn">Only necessary</button>
+       </div>
+
+        <div class="more-info">
+          <p><a href="javascript:void(0);" id="toggle-cookies-info" style="text-decoration: underline; font-size: x-small; color: var(--deep-green);">advanced</a></p>
+          <div id="info-cookies-content" class="hidden">
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">Preferences Cookies</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">Analytics Cookies</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">Marketing Cookies</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">Your life</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">Your dog life</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+              <label for="accept-personal-data">all the cookies</label>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+
   <footer>
     <p>© 2025 MarketGreen. All rights reserved.</p>
   </footer>
@@ -132,11 +176,11 @@
     <!-- Confirmation Popup (before closing the modal) -->
     <div id="confirmation-popup" class="modal" aria-hidden="true" role="dialog"
       aria-labelledby="confirmation-popup-title">
-      <div class="modal-content" >
+      <div class="modal-content">
         <h2 id="confirmation-popup-title">Are you sure you don't want to save co2 and water?</h2>
         <p>This action will not save your changes, and you may miss out on saving CO2 and water.</p>
-        <button  id="cancel-btn">I do care about the enviroment</button>
-        <button  id="proceed-btn">I don't care about saving CO2 and water</button>        
+        <button id="cancel-btn" class="cancel-btn">I do care about the enviroment</button>
+        <button id="proceed-btn">I don't care about saving CO2 and water</button>
       </div>
     </div>
 

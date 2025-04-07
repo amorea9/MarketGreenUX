@@ -120,6 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  document.getElementById('toggle-cookies-info').addEventListener('click', function () {
+    var infoContent = document.getElementById('info-cookies-content');
+    var isVisible = infoContent.style.display === 'block';
+
+    if (isVisible) {
+      infoContent.style.display = 'none';
+    } else {
+      infoContent.style.display = 'block';
+    }
+  });
+
   cacheProducts();
   loadProducts();
   lazyLoadImages();
@@ -133,6 +144,10 @@ const productGrid = document.getElementById("grid");
 const confirmationPopup = document.getElementById("confirmation-popup");
 const cancelButton = document.getElementById("cancel-btn");
 const proceedButton = document.getElementById("proceed-btn");
+const necessaryCookiesButton = document.getElementById("necessary-btn");
+const allCookiesButton = document.getElementById("allCookies-btn");
+const welcomeModal = document.getElementById("welcome-modal");
+
 const productArray = products.map(product => ({
   ...product,
   price: Math.floor(Math.random() * 20) + 5, // random price between $5–$25
@@ -279,17 +294,16 @@ proceedButton.addEventListener("click", () => {
   clearErrors(); // Clear any errors
 });
 
-// Close the confirmation popup if the close button is clicked
-closeButton.addEventListener("click", () => {
-  confirmationPopup.setAttribute("aria-hidden", "true");
-});
+allCookiesButton.addEventListener('click', () => {
+  welcomeModal.setAttribute("aria-hidden", "true");
+  
+})
 
-// Close the confirmation popup if the user clicks outside the popup
-confirmationPopup.addEventListener("click", (e) => {
-  if (e.target === confirmationPopup) {
-    confirmationPopup.setAttribute("aria-hidden", "true");
-  }
-});
+necessaryCookiesButton.addEventListener('click', () => {
+  welcomeModal.setAttribute("aria-hidden", "true");
+  
+})
+
 
 // Real-time validation function
 function validateField(field, errorId, conditionFn, errorMsg) {
