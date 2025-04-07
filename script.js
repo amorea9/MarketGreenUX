@@ -198,3 +198,115 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   lazyLoadImages();
 });
+
+//modal stuff
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("purchase-modal");
+  const closeBtn = modal.querySelector(".close-button");
+  const form = document.getElementById("purchase-form");
+  const feedback = document.getElementById("form-feedback");
+
+  const clearErrors = () => {
+    document.querySelectorAll(".error-message").forEach((span) => (span.textContent = ""));
+    form.querySelectorAll("input, select").forEach((field) => field.classList.remove("error"));
+  };
+
+  const closeModal = () => {
+    modal.setAttribute("aria-hidden", "true");
+    form.reset();
+    feedback.style.display = "none";
+    clearErrors();
+  };
+
+  // Open modal
+  document.querySelectorAll(".buy-button").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.setAttribute("aria-hidden", "false");
+      feedback.style.display = "none";
+      clearErrors();
+    });
+  });
+
+  // Close modal (X or click outside)
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Form validation + feedback
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const fullName = form.fullName;
+    const email = form.email;
+    const address = form.address;
+    const payment = form.payment;
+
+    let isValid = true;
+
+    if (fullName.value.trim().length < 2) {
+      document.getElementById("error-fullName").textContent = "Full name must be at least 2 characters.";
+      fullName.classList.add("error");
+      isValid = false;
+    }
+
+    if (!email.value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+      document.getElementById("error-email").textContent = "Please enter a valid email.";
+      email.classList.add("error");
+      isValid = false;
+    }
+
+    if (address.value.trim().length < 5) {
+      document.getElementById("error-address").textContent = "Address must be at least 5 characters.";
+      address.classList.add("error");
+      isValid = false;
+    }
+
+    if (!payment.value) {
+      document.getElementById("error-payment").textContent = "Please select a payment method.";
+      payment.classList.add("error");
+      isValid = false;
+    }
+
+    if (!isValid) return;
+
+    feedback.style.display = "block";
+    form.reset();
+
+    setTimeout(() => {
+      closeModal();
+    }, 3000);
+  });
+  // Real-time validation function
+  function validateField(field, errorId, conditionFn, errorMsg) {
+    const errorEl = document.getElementById(errorId);
+    if (!conditionFn(field.value)) {
+      errorEl.textContent = errorMsg;
+      field.classList.add("error");
+    } else {
+      errorEl.textContent = "";
+      field.classList.remove("error");
+    }
+  }
+
+  // Attach live validation listeners
+  form.fullName.addEventListener("input", () => {
+    validateField(form.fullName, "error-fullName", (val) => val.trim().length >= 2, "Full name must be at least 2 characters.");
+  });
+
+  form.email.addEventListener("input", () => {
+    validateField(form.email, "error-email", (val) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(val), "Please enter a valid email.");
+  });
+
+  form.address.addEventListener("input", () => {
+    validateField(form.address, "error-address", (val) => val.trim().length >= 5, "Address must be at least 5 characters.");
+  });
+
+  form.payment.addEventListener("change", () => {
+    validateField(form.payment, "error-payment", (val) => val !== "", "Please select a payment method.");
+  });
+});
