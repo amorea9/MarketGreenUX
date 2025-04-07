@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const buyButton = document.createElement("button");
       buyButton.classList.add("buy-button");
-      buyButton.textContent = `Buy ${product.category}`;
+      buyButton.textContent = `Buy For ${product.category}`;
 
       card.appendChild(requestButton);
       card.appendChild(img);
