@@ -1,32 +1,7 @@
 import { products } from "./products.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const productGrid = document.getElementById("grid");
-  const teeSvgPath = "./assets/Tee.svg";
-
   const modal = document.getElementById("purchase-modal");
-  const closeBtn = modal.querySelector(".close-button");
-  const form = document.getElementById("purchase-form");
-  const feedback = document.getElementById("form-feedback");
-
-  // Array of product objects
-  const productArray = products.map(product => ({
-    ...product,
-    price: Math.floor(Math.random() * 20) + 5, // random price between $5–$25
-  }));;
-
-
-  const clearErrors = () => {
-    document.querySelectorAll(".error-message").forEach((span) => (span.textContent = ""));
-    form.querySelectorAll("input, select").forEach((field) => field.classList.remove("error"));
-  };
-
-  const closeModal = () => {
-    modal.setAttribute("aria-hidden", "true");
-    form.reset();
-    feedback.style.display = "none";
-    clearErrors();
-  };
 
   // Open modal
   document.querySelectorAll(".buy-button").forEach((btn) => {
@@ -100,18 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   });
 
-  // Real-time validation function
-  function validateField(field, errorId, conditionFn, errorMsg) {
-    const errorEl = document.getElementById(errorId);
-    if (!conditionFn(field.value)) {
-      errorEl.textContent = errorMsg;
-      field.classList.add("error");
-    } else {
-      errorEl.textContent = "";
-      field.classList.remove("error");
-    }
-  }
-
   // Attach live validation listeners
   form.fullName.addEventListener("input", () => {
     validateField(form.fullName, "error-fullName", (val) => val.trim().length >= 2, "Full name must be at least 2 characters.");
@@ -154,120 +117,154 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Function to load products dynamically
-  function loadProducts() {
-    productArray.forEach((product) => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-
-      const requestButton = document.createElement("button");
-      requestButton.classList.add("request-button");
-      requestButton.textContent = "Show Image";
-      requestButton.addEventListener("click", () => fetchRandomImage(img, product.id));
-
-      const img = document.createElement("img");
-      img.dataset.src = product.image; // Lazy load
-      img.alt = `${product.title} - ${product.co2} impact`; // Improved accessibility
-      img.classList.add("lazy-load");
-      img.setAttribute("loading", "lazy"); // Native lazy loading
-      img.setAttribute("width", "300"); // Set explicit width
-      img.setAttribute("height", "300"); // Avoid layout shift
-
-      const co2Tag = document.createElement("div");
-      co2Tag.classList.add("co2-tag");
-      co2Tag.textContent = product.co2;
-
-      const waterTag = document.createElement("div");
-      waterTag.classList.add("water-tag");
-      waterTag.textContent = product.water;
-
-      const tagsContainer = document.createElement("div");
-      tagsContainer.classList.add("tags-container");
-      tagsContainer.appendChild(co2Tag);
-      tagsContainer.appendChild(waterTag);
-
-      const title = document.createElement("p");
-      title.textContent = product.title;
-
-      const desc = document.createElement("p");
-      desc.textContent = product.description;
-
-      const buyButton = document.createElement("button");
-      buyButton.classList.add("buy-button");
-      buyButton.textContent = `Buy ${product.price}$`;
-
-
-      // Pass the product details to the modal on button click
-      buyButton.addEventListener("click", () => {
-        const modalPrice = document.getElementById("modal-price");
-        modalPrice.textContent = `${product.price}$`;
-
-        const finalPrice = document.getElementById("summary-total");
-        finalPrice.textContent = `${20 + product.price}$`
-
-        modal.setAttribute("aria-hidden", "false");
-        feedback.style.display = "none";
-        clearErrors();
-      });
-
-      card.appendChild(requestButton);
-      card.appendChild(img);
-      card.appendChild(title);
-      card.appendChild(tagsContainer);
-      card.appendChild(desc);
-      card.appendChild(buyButton);
-      productGrid.appendChild(card);
-    });
-  }
-
-  function fetchRandomImage(imgElement, productId) {
-    const storageKey = `product-image-${productId}`;
-    const cachedImage = localStorage.getItem(storageKey);
-
-    if (cachedImage) {
-      console.log("Image found in cache");
-
-      imgElement.src = cachedImage;
-      imgElement.previousElementSibling.style.display = "none"; // Hide the request button if image is cached already
-    } else {
-      console.log("Fetchin image...");
-      const imageUrl = `https://static.vecteezy.com/system/resources/previews/028/244/679/large_2x/white-t-shirt-mockup-male-t-shirt-with-short-sleeves-front-back-view-realistic-3d-mock-up-ai-generated-photo.jpg`;
-      imgElement.src = imageUrl;
-
-      // Store the fetched image in localStorage after it loads
-      imgElement.onload = () => {
-        localStorage.setItem(storageKey, imgElement.src);
-        imgElement.previousElementSibling.style.display = "none"; // Hide the request button after image is loaded
-      };
-    }
-  }
-
-  // Caching logic
-  function cacheProducts() {
-    if (!localStorage.getItem("products")) {
-      localStorage.setItem("products", JSON.stringify(products));
-    }
-  }
-
-  // Lazy loading images
-  function lazyLoadImages() {
-    const lazyImages = document.querySelectorAll(".lazy-load");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.removeAttribute("data-src");
-          observer.unobserve(img);
-        }
-      });
-    });
-
-    lazyImages.forEach((img) => observer.observe(img));
-  }
-
   cacheProducts();
   loadProducts();
   lazyLoadImages();
 });
 
+const modal = document.getElementById("purchase-modal");
+const closeBtn = modal.querySelector(".close-button");
+const form = document.getElementById("purchase-form");
+const feedback = document.getElementById("form-feedback");
+const productGrid = document.getElementById("grid");
+const productArray = products.map(product => ({
+  ...product,
+  price: Math.floor(Math.random() * 20) + 5, // random price between $5–$25
+}));;
+
+// Function to load products dynamically
+function loadProducts() {
+  productArray.forEach((product) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const requestButton = document.createElement("button");
+    requestButton.classList.add("request-button");
+    requestButton.textContent = "Show Image";
+    requestButton.addEventListener("click", () => fetchRandomImage(img, product.id));
+
+    const img = document.createElement("img");
+    img.dataset.src = product.image; // Lazy load
+    img.alt = `${product.title} - ${product.co2} impact`; // Improved accessibility
+    img.classList.add("lazy-load");
+    img.setAttribute("loading", "lazy"); // Native lazy loading
+    img.setAttribute("width", "300"); // Set explicit width
+    img.setAttribute("height", "300"); // Avoid layout shift
+
+    const co2Tag = document.createElement("div");
+    co2Tag.classList.add("co2-tag");
+    co2Tag.textContent = product.co2;
+
+    const waterTag = document.createElement("div");
+    waterTag.classList.add("water-tag");
+    waterTag.textContent = product.water;
+
+    const tagsContainer = document.createElement("div");
+    tagsContainer.classList.add("tags-container");
+    tagsContainer.appendChild(co2Tag);
+    tagsContainer.appendChild(waterTag);
+
+    const title = document.createElement("p");
+    title.textContent = product.title;
+
+    const desc = document.createElement("p");
+    desc.textContent = product.description;
+
+    const buyButton = document.createElement("button");
+    buyButton.classList.add("buy-button");
+    buyButton.textContent = `Buy ${product.price}$`;
+
+
+    // Pass the product details to the modal on button click
+    buyButton.addEventListener("click", () => {
+      const modalPrice = document.getElementById("modal-price");
+      modalPrice.textContent = `${product.price}$`;
+
+      const finalPrice = document.getElementById("summary-total");
+      finalPrice.textContent = `${20 + product.price}$`
+
+      modal.setAttribute("aria-hidden", "false");
+      feedback.style.display = "none";
+      clearErrors();
+    });
+
+    card.appendChild(requestButton);
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(tagsContainer);
+    card.appendChild(desc);
+    card.appendChild(buyButton);
+    productGrid.appendChild(card);
+  });
+}
+
+function fetchRandomImage(imgElement, productId) {
+  const storageKey = `product-image-${productId}`;
+  const cachedImage = localStorage.getItem(storageKey);
+
+  if (cachedImage) {
+    console.log("Image found in cache");
+
+    imgElement.src = cachedImage;
+    imgElement.previousElementSibling.style.display = "none"; // Hide the request button if image is cached already
+  } else {
+    console.log("Fetchin image...");
+    const imageUrl = `https://static.vecteezy.com/system/resources/previews/028/244/679/large_2x/white-t-shirt-mockup-male-t-shirt-with-short-sleeves-front-back-view-realistic-3d-mock-up-ai-generated-photo.jpg`;
+    imgElement.src = imageUrl;
+
+    // Store the fetched image in localStorage after it loads
+    imgElement.onload = () => {
+      localStorage.setItem(storageKey, imgElement.src);
+      imgElement.previousElementSibling.style.display = "none"; // Hide the request button after image is loaded
+    };
+  }
+}
+
+// Caching logic
+function cacheProducts() {
+  if (!localStorage.getItem("products")) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+}
+
+// Lazy loading images
+function lazyLoadImages() {
+  const lazyImages = document.querySelectorAll(".lazy-load");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.removeAttribute("data-src");
+        observer.unobserve(img);
+      }
+    });
+  });
+
+  lazyImages.forEach((img) => observer.observe(img));
+}
+
+
+const clearErrors = () => {
+  document.querySelectorAll(".error-message").forEach((span) => (span.textContent = ""));
+  form.querySelectorAll("input, select").forEach((field) => field.classList.remove("error"));
+};
+
+const closeModal = () => {
+  modal.setAttribute("aria-hidden", "true");
+  form.reset();
+  feedback.style.display = "none";
+  clearErrors();
+};
+
+  // Real-time validation function
+  function validateField(field, errorId, conditionFn, errorMsg) {
+    const errorEl = document.getElementById(errorId);
+    if (!conditionFn(field.value)) {
+      errorEl.textContent = errorMsg;
+      field.classList.add("error");
+    } else {
+      errorEl.textContent = "";
+      field.classList.remove("error");
+    }
+  }
