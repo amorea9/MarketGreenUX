@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Pass the product details to the modal on button click
       buyButton.addEventListener("click", () => {
         const modalPrice = document.getElementById("modal-price"); // Assuming you've added this element in the modal
-        modalPrice.textContent = `Price: $${product.price}`;
+        modalPrice.textContent = `${product.price}$`;
 
         const finalPrice = document.getElementById("summary-total"); 
         finalPrice.textContent = `${20 + product.price}$`
