@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const modalPrice = document.getElementById("modal-price"); // Assuming you've added this element in the modal
         modalPrice.textContent = `${product.price}$`;
 
-        const finalPrice = document.getElementById("summary-total"); 
+        const finalPrice = document.getElementById("summary-total");
         finalPrice.textContent = `${20 + product.price}$`
 
         modal.setAttribute("aria-hidden", "false");
@@ -263,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = form.email;
     const address = form.address;
     const payment = form.payment;
+    const acceptTerms = form["accept-terms"]; // Select the terms checkbox
 
     let isValid = true;
 
@@ -290,6 +291,13 @@ document.addEventListener("DOMContentLoaded", () => {
       isValid = false;
     }
 
+    // Add validation for terms checkbox
+    if (!acceptTerms.checked) {
+      document.getElementById("error-terms").textContent = "You must accept the terms and conditions.";
+      acceptTerms.classList.add("error");
+      isValid = false;
+    }
+
     if (!isValid) return;
 
     feedback.style.display = "block";
@@ -299,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal();
     }, 3000);
   });
+
   // Real-time validation function
   function validateField(field, errorId, conditionFn, errorMsg) {
     const errorEl = document.getElementById(errorId);
@@ -326,5 +335,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.payment.addEventListener("change", () => {
     validateField(form.payment, "error-payment", (val) => val !== "", "Please select a payment method.");
+  });
+
+  // Real-time validation for terms checkbox
+  form["accept-terms"].addEventListener("change", () => {
+    const errorEl = document.getElementById("error-terms");
+    if (!form["accept-terms"].checked) {
+      errorEl.textContent = "You must accept the terms and conditions.";
+      form["accept-terms"].classList.add("error");
+    } else {
+      errorEl.textContent = "";
+      form["accept-terms"].classList.remove("error");
+    }
+  });
+
+
+  // Toggle the 'More Info' section
+  document.getElementById('toggle-info').addEventListener('click', function () {
+    var infoContent = document.getElementById('info-content');
+    var isVisible = infoContent.style.display === 'block';
+
+    if (isVisible) {
+      infoContent.style.display = 'none';
+    } else {
+      infoContent.style.display = 'block';
+    }
   });
 });
