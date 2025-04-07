@@ -368,3 +368,28 @@ hr {
   padding-right: 15px; /* Prevent content from being hidden behind the scrollbar */
   box-sizing: border-box; /* Prevent padding from affecting the height */
 }
+
+#cancel-btn {
+  color: var(--deep-green);
+  background: none;
+  border: none;
+
+  font-size: 1rem;
+  font-weight: normal;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#proceed-btn {
+  color: #a80000;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: normal;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: 10px 0;
+}

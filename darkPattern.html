@@ -81,38 +81,38 @@
 
 
           <!-- Checkbox for terms unsubscribe -->
-           <div class="price-summary">
+          <div class="price-summary">
 
-             <div class="checkbox-container">
-               <input type="checkbox" id="accept-terms" name="accept-terms" />
-               <label for="accept-terms">Accept Terms and Conditions</label>
-               <span class="error-message" id="error-terms"></span>
-             </div>
-   
-             <!-- Collapsible paragraph with checkbox for collecting personal data -->
-             <div class="more-info">
-               <p><a href="javascript:void(0);" id="toggle-info">More Info</a></p>
-               <div id="info-content" class="hidden">
-                 <div class="checkbox-container">
-                   <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-                   <label for="accept-personal-data">Accept collecting personal data</label>
-                 </div>
-               </div>
-             </div>
-           </div>
-           <div class="price-summary">
+            <div class="checkbox-container">
+              <input type="checkbox" id="accept-terms" name="accept-terms" />
+              <label for="accept-terms">Accept Terms and Conditions</label>
+            </div>
+            <span class="error-message" id="error-terms"></span>
+
+            <!-- Collapsible paragraph with checkbox for collecting personal data -->
+            <div class="more-info">
+              <p><a href="javascript:void(0);" id="toggle-info">More Info</a></p>
+              <div id="info-content" class="hidden">
+                <div class="checkbox-container">
+                  <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+                  <label for="accept-personal-data">Accept collecting personal data</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="price-summary">
             <h3>Shipping</h3>
 
-              <input type="radio" id="subscribe-premium" name="shipping" checked />
-              <label for="subscribe-premium">Subscribe to Premium</label>
+            <input type="radio" id="subscribe-premium" name="shipping" checked />
+            <label for="subscribe-premium">Subscribe to Premium</label>
 
             <hr>
 
-              <input type="radio" id="one-time-purchase" name="shipping" />
-              <label for="one-time-purchase">One Time purchase</label>
+            <input type="radio" id="one-time-purchase" name="shipping" />
+            <label for="one-time-purchase">One Time purchase</label>
 
           </div>
-          
+
           <div class="price-summary">
             <h3>Order Summary</h3>
             <p><strong>Product Price:</strong> <span id="modal-price"></span></p>
@@ -128,6 +128,18 @@
         </form>
       </div>
     </div>
+
+    <!-- Confirmation Popup (before closing the modal) -->
+    <div id="confirmation-popup" class="modal" aria-hidden="true" role="dialog"
+      aria-labelledby="confirmation-popup-title">
+      <div class="modal-content" >
+        <h2 id="confirmation-popup-title">Are you sure you don't want to save co2 and water?</h2>
+        <p>This action will not save your changes, and you may miss out on saving CO2 and water.</p>
+        <button  id="cancel-btn">Cancel</button>
+        <button  id="proceed-btn">I don't care about saving CO2 and water</button>        
+      </div>
+    </div>
+
   </div>
   </div>
 

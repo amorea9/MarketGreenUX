@@ -71,7 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
 
     setTimeout(() => {
-      closeModal();
+      modal.setAttribute("aria-hidden", "true");
+      form.reset();
+      feedback.style.display = "none";
+      clearErrors();
     }, 3000);
   });
 
@@ -127,6 +130,9 @@ const closeBtn = modal.querySelector(".close-button");
 const form = document.getElementById("purchase-form");
 const feedback = document.getElementById("form-feedback");
 const productGrid = document.getElementById("grid");
+const confirmationPopup = document.getElementById("confirmation-popup");
+const cancelButton = document.getElementById("cancel-btn");
+const proceedButton = document.getElementById("proceed-btn");
 const productArray = products.map(product => ({
   ...product,
   price: Math.floor(Math.random() * 20) + 5, // random price between $5–$25
@@ -251,20 +257,48 @@ const clearErrors = () => {
 };
 
 const closeModal = () => {
-  modal.setAttribute("aria-hidden", "true");
-  form.reset();
-  feedback.style.display = "none";
-  clearErrors();
+  showConfirmationPopup();
 };
 
-  // Real-time validation function
-  function validateField(field, errorId, conditionFn, errorMsg) {
-    const errorEl = document.getElementById(errorId);
-    if (!conditionFn(field.value)) {
-      errorEl.textContent = errorMsg;
-      field.classList.add("error");
-    } else {
-      errorEl.textContent = "";
-      field.classList.remove("error");
-    }
+// Function to show the confirmation popup
+const showConfirmationPopup = () => {
+  confirmationPopup.setAttribute("aria-hidden", "false");
+};
+
+// Cancel button behavior: Close the confirmation popup without closing the modal
+cancelButton.addEventListener("click", () => {
+  confirmationPopup.setAttribute("aria-hidden", "true");
+});
+
+// Proceed button behavior: Close the modal without saving
+proceedButton.addEventListener("click", () => {
+  confirmationPopup.setAttribute("aria-hidden", "true");
+  modal.setAttribute("aria-hidden", "true"); // Close the original modal
+  form.reset(); // Reset the form
+  feedback.style.display = "none"; // Hide feedback
+  clearErrors(); // Clear any errors
+});
+
+// Close the confirmation popup if the close button is clicked
+closeButton.addEventListener("click", () => {
+  confirmationPopup.setAttribute("aria-hidden", "true");
+});
+
+// Close the confirmation popup if the user clicks outside the popup
+confirmationPopup.addEventListener("click", (e) => {
+  if (e.target === confirmationPopup) {
+    confirmationPopup.setAttribute("aria-hidden", "true");
   }
+});
+
+// Real-time validation function
+function validateField(field, errorId, conditionFn, errorMsg) {
+  const errorEl = document.getElementById(errorId);
+  if (!conditionFn(field.value)) {
+    errorEl.textContent = errorMsg;
+    field.classList.add("error");
+  } else {
+    errorEl.textContent = "";
+    field.classList.remove("error");
+  }
+}
