@@ -50,71 +50,86 @@
     <div class="modal-content">
       <button class="close-button" aria-label="Close form">&times;</button>
       <h2 id="purchaseTitle">Complete Your Purchase</h2>
-      <form id="purchase-form" novalidate>
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" name="fullName" required />
-        <span class="error-message" id="error-fullName"></span>
+      <div class="form-container"> <!-- Added container for scrolling -->
+        <form id="purchase-form" novalidate>
+          <!-- Form fields here -->
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required />
+          <span class="error-message" id="error-fullName"></span>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-        <span class="error-message" id="error-email"></span>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <span class="error-message" id="error-email"></span>
 
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address" required />
-        <span class="error-message" id="error-address"></span>
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" required />
+          <span class="error-message" id="error-address"></span>
 
-        <label for="payment">Payment Method</label>
-        <select id="payment" name="payment" required>
-          <option value="">Select a method</option>
-          <option value="credit">Credit Card</option>
-          <option value="paypal">PayPal</option>
-        </select>
-        <span class="error-message" id="error-payment"></span>
+          <label for="payment">Payment Method</label>
+          <select id="payment" name="payment" required>
+            <option value="">Select a method</option>
+            <option value="credit">Credit Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+          <span class="error-message" id="error-payment"></span>
 
-        <!-- Checkbox for newsletter unsubscribe -->
-        <div class="checkbox-container">
-          <input type="checkbox" id="unsubscribe-newsletter" name="unsubscribe-newsletter" />
-          <label for="unsubscribe-newsletter">Select to unsubscribe to the newsletter</label>
-        </div>
+          <!-- Checkbox for newsletter unsubscribe -->
+          <div class="checkbox-container">
+            <input type="checkbox" id="unsubscribe-newsletter" name="unsubscribe-newsletter" />
+            <label for="unsubscribe-newsletter">Select to unsubscribe to the newsletter</label>
+          </div>
 
-        <!-- Checkbox for terms unsubscribe -->
-        <div class="checkbox-container">
-          <input type="checkbox" id="accept-terms" name="accept-terms" />
-          <label for="accept-terms">Accept Terms and Conditions</label>
-        </div>
-        <span class="error-message" id="error-terms"></span> <!-- Error message for terms -->
 
-        <!-- Collapsible paragraph with checkbox for collecting personal data -->
-        <div class="more-info">
-          <p><a href="javascript:void(0);" id="toggle-info">More Info</a></p>
-          <div id="info-content" class="hidden">
+          <!-- Checkbox for terms unsubscribe -->
+           <div class="price-summary">
+
+             <div class="checkbox-container">
+               <input type="checkbox" id="accept-terms" name="accept-terms" />
+               <label for="accept-terms">Accept Terms and Conditions</label>
+               <span class="error-message" id="error-terms"></span>
+             </div>
+   
+             <!-- Collapsible paragraph with checkbox for collecting personal data -->
+             <div class="more-info">
+               <p><a href="javascript:void(0);" id="toggle-info">More Info</a></p>
+               <div id="info-content" class="hidden">
+                 <div class="checkbox-container">
+                   <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+                   <label for="accept-personal-data">Accept collecting personal data</label>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+          <div class="price-summary">
+            <h3>Shipping</h3>
             <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Accept collecting personal data</label>
+              <input type="checkbox" id="shipping" checked name="shipping" />
+              <label for="shipping">Subscribe to Premium</label>
+            </div>
+            <hr>
+            <div class="checkbox-container">
+              <input type="checkbox" id="shipping" name="shipping" />
+              <label for="shipping">One Time purchase</label>
             </div>
           </div>
-        </div>
 
-        <!-- 📦 Price Breakdown Section -->
-        <div class="price-summary" style="margin-top: 1.5rem; padding: 1rem; border-top: 1px solid #ccc;">
-          <h3>Order Summary</h3>
-          <p><strong>Product Price:</strong> <span id="modal-price"></span></p>
-          <p><strong>Tax:</strong> 10$</p>
-          <p><strong>Shipping:</strong> 10$</p>
-          <p id="final-price"><strong>Total:</strong> <span id="summary-total"></span></p>
-        </div>
+          <div class="price-summary">
+            <h3>Order Summary</h3>
+            <p><strong>Product Price:</strong> <span id="modal-price"></span></p>
+            <p><strong>Tax:</strong> 10$</p>
+            <p><strong>Shipping:</strong> 10$</p>
+            <p id="final-price"><strong>Total:</strong> <span id="summary-total"></span></p>
+          </div>
 
-        <button class="modal-button" type="submit">Confirm Purchase</button>
-
-        <p id="form-feedback" style="display: none; color: green; font-weight: bold; margin-top: 1rem">
-          Thank you! Your order has been submitted.
-        </p>
-      </form>
-
-      <p id="form-feedback" style="display: none; color: green; font-weight: bold; margin-top: 1rem">
-        Thank you! Your order has been submitted.
-      </p>
+          <button class="modal-button" type="submit">Confirm Purchase</button>
+          <p id="form-feedback" style="display: none; color: green; font-weight: bold; margin-top: 1rem">
+            Thank you! Your order has been submitted.
+          </p>
+        </form>
+      </div>
     </div>
+  </div>
   </div>
 
 </body>
