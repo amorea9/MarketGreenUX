@@ -100,20 +100,19 @@
                </div>
              </div>
            </div>
-
-          <div class="price-summary">
+           <div class="price-summary">
             <h3>Shipping</h3>
-            <div class="checkbox-container">
-              <input type="checkbox" id="shipping" checked name="shipping" />
-              <label for="shipping">Subscribe to Premium</label>
-            </div>
-            <hr>
-            <div class="checkbox-container">
-              <input type="checkbox" id="shipping" name="shipping" />
-              <label for="shipping">One Time purchase</label>
-            </div>
-          </div>
 
+              <input type="radio" id="subscribe-premium" name="shipping" checked />
+              <label for="subscribe-premium">Subscribe to Premium</label>
+
+            <hr>
+
+              <input type="radio" id="one-time-purchase" name="shipping" />
+              <label for="one-time-purchase">One Time purchase</label>
+
+          </div>
+          
           <div class="price-summary">
             <h3>Order Summary</h3>
             <p><strong>Product Price:</strong> <span id="modal-price"></span></p>
