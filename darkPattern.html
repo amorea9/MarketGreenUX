@@ -43,43 +43,44 @@
   <div id="welcome-modal" class="modal" aria-hidden="false" role="dialog" aria-labelledby="welcome-title">
     <div class="modal-content">
       <h2 id="welcome-title">Cookies!</h2>
-       <p>We use cookies to improve your experience. Please select your preferences below:</p>
-       <br>
-       <div style="display: flex; gap: 40px; ;">
-         <button id="allCookies-btn"  class="cookies-button">Accept All Cookies</button>
-          <button id="necessary-btn" style="font-size: x-small;" class="cancel-btn">Only necessary</button>
-       </div>
+      <p>We use cookies to improve your experience. Please select your preferences below:</p>
+      <br>
+      <div style="display: flex; gap: 40px; ;">
+        <button id="allCookies-btn" class="cookies-button">Accept All Cookies</button>
+        <button id="necessary-btn" style="font-size: x-small;" class="cancel-btn">Only necessary</button>
+      </div>
 
-        <div class="more-info">
-          <p><a href="javascript:void(0);" id="toggle-cookies-info" style="text-decoration: underline; font-size: x-small; color: var(--deep-green);">advanced</a></p>
-          <div id="info-cookies-content" class="hidden">
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Preferences Cookies</label>
-            </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Analytics Cookies</label>
-            </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Marketing Cookies</label>
-            </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Your life</label>
-            </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">Your dog life</label>
-            </div>
-            <div class="checkbox-container">
-              <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
-              <label for="accept-personal-data">all the cookies</label>
-            </div>
+      <div class="more-info">
+        <p><a href="javascript:void(0);" id="toggle-cookies-info"
+            style="text-decoration: underline; font-size: x-small; color: var(--deep-green);">advanced</a></p>
+        <div id="info-cookies-content" class="hidden">
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">Preferences Cookies</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">Analytics Cookies</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">Marketing Cookies</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">Your life</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">Your dog life</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept-personal-data" checked name="accept-personal-data" />
+            <label for="accept-personal-data">all the cookies</label>
           </div>
         </div>
-        
+      </div>
+
     </div>
   </div>
 
@@ -87,7 +88,6 @@
     <p>© 2025 MarketGreen. All rights reserved.</p>
   </footer>
 
-  <script type="module" src="darkpatternScript.js"></script>
 
   <!-- Purchase Form Modal -->
   <div id="purchase-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="purchaseTitle">
@@ -146,15 +146,17 @@
           </div>
           <div class="price-summary">
             <h3>Shipping</h3>
-
-            <input type="radio" id="subscribe-premium" name="shipping" checked />
-            <label for="subscribe-premium">Subscribe to Premium</label>
-
-            <hr>
-
-            <input type="radio" id="one-time-purchase" name="shipping" />
-            <label for="one-time-purchase">One Time purchase</label>
-
+            <div class="shipping-option">
+              <input type="radio" id="subscribe-premium" name="shipping" checked class="shipping-radio" />
+              <label for="subscribe-premium" class="shipping-label">Subscribe to Premium</label>
+          </div>
+          
+          <hr>
+          
+          <div class="shipping-option">
+              <input type="radio" id="one-time-purchase" name="shipping" class="shipping-radio" />
+              <label for="one-time-purchase" class="shipping-label">One Time Purchase</label>
+          </div>
           </div>
 
           <div class="price-summary">
@@ -186,7 +188,7 @@
 
   </div>
   </div>
-
+  <script type="module" src="darkpatternScript.js"></script>
 </body>
 
 </html>
